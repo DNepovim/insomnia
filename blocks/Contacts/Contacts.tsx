@@ -77,7 +77,7 @@ export const Contacts: React.FC<ContactsFields> = ({
                   height: 3em;
                   margin-right: 8px !important;
                 `}
-                src={`/icons/${contact.icon}.svg`}
+                src={`/insomnia/icons/${contact.icon}.svg`}
                 alt=""
                 width={70}
                 height={70}
