@@ -12,11 +12,19 @@ export interface GalleryBlock extends Block {
 
 export interface GalleryFields extends BlockFields {
   images: string[]
+  button: {
+    label: string
+    link: string
+  }
 }
 
 export const gallerySchema = withBlockSchema(
   yup.object().shape({
     images: yup.array().of(yup.string().required()).required(),
+    button: yup.object().shape({
+      label: yup.string().required(),
+      link: yup.string().required(),
+    }),
   })
 )
 
@@ -29,6 +37,19 @@ export const galleryDef: BlockDef<GalleryFields> = {
       label: "Obrázky",
       clonable: true,
       component: (props) => <TextInput {...props} />,
+    },
+    button: {
+      label: "Tlačítko",
+      fields: {
+        label: {
+          label: "Nápis",
+          component: (props) => <TextInput {...props} />,
+        },
+        link: {
+          label: "Odkaz",
+          component: (props) => <TextInput {...props} />,
+        },
+      },
     },
   },
   component: Gallery,

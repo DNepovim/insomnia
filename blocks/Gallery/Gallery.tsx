@@ -7,10 +7,11 @@ import { theme } from "../../theme"
 import { Block } from "../../components/Block/Block"
 import { GalleryFields } from "./galleryDef"
 import { PROJECT } from "../../projects"
+import { Button } from "../../components/Button/Button"
 
 const gap = 4
 
-export const Gallery: React.FC<GalleryFields> = ({ id, images }) => (
+export const Gallery: React.FC<GalleryFields> = ({ id, images, button }) => (
   <Block id={id}>
     <Container
       css={css`
@@ -49,6 +50,9 @@ export const Gallery: React.FC<GalleryFields> = ({ id, images }) => (
           />
         </figure>
       ))}
+      <Button link={button.link} targetBlank>
+        {button.label}
+      </Button>
     </Container>
   </Block>
 )
