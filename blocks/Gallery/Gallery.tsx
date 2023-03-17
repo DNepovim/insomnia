@@ -50,7 +50,7 @@ export const Gallery: React.FC<GalleryFields> = ({ id, images, button }) => (
           />
         </figure>
       ))}
-      <Button link={button.link} targetBlank>
+      <Button css={`margin: 0 auto;`} link={button.link} targetBlank>
         {button.label}
       </Button>
     </Container>
