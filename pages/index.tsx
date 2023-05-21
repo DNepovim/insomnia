@@ -11,6 +11,7 @@ import { BlockTemplates } from "../blocks/blockTemplates"
 import { getMeta, getNavigation, getPage } from "../firebase/database"
 import { PROJECT } from "../projects"
 import { theme } from "../theme"
+import { fonts } from "../fonts"
 
 const Home: NextPage<Props> = ({ meta, navigation, page }) => (
   <div>
@@ -45,9 +46,9 @@ const Home: NextPage<Props> = ({ meta, navigation, page }) => (
       <meta name="theme-color" content={theme.color.background} />
 
       <link rel="preconnect" href="https://cdn.skauting.cz" />
-      <link href="https://cdn.skauting.cz/fonts/fonts.css" rel="stylesheet" />
     </Head>
 
+    <Global styles={fonts} />
     <Global styles={globalStyles} />
 
     <main
