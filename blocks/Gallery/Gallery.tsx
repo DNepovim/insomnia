@@ -47,6 +47,8 @@ export const Gallery: React.FC<GalleryFields> = ({ id, images, button }) => (
             css={css`
               background-color: ${theme.color.brand};
             `}
+            objectFit="cover"
+            objectPosition="center"
           />
         </figure>
       ))}
