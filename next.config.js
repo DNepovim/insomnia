@@ -4,6 +4,10 @@ module.exports = {
   images: {
     domains: ["img.youtube.com"],
   },
+  i18n: {
+    locales: ["cs"],
+    defaultLocale: "cs",
+  },
   async rewrites() {
     return [
       {
