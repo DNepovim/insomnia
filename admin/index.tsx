@@ -94,8 +94,19 @@ export const Admin: NextPage = () => {
 
   if (!user) {
     return (
-      <Centered>
-        <Button onClick={login} icon={<LoginOutlined />}>
+      <Centered
+        css={css`
+          background-color: #eee;
+          height: 100vh;
+        `}
+      >
+        <Button
+          css={css`
+            box-shadow: 1px 1px 1px #bbb;
+          `}
+          onClick={login}
+          icon={<LoginOutlined />}
+        >
           Přihlásit se
         </Button>
       </Centered>
@@ -158,16 +169,16 @@ export const Admin: NextPage = () => {
               <figure
                 css={css`
                   height: 50px;
+                  width: 50px;
                   margin-right: 8px;
                 `}
               >
                 <Image
                   src={`/${PROJECT}/images/logo.webp`}
                   alt=""
-                  css={css`
-                    max-height: 100%;
-                    width: auto;
-                  `}
+                  width={50}
+                  height={50}
+                  layout="responsive"
                 />
               </figure>
               {!isSidebarCollapsed && (
@@ -184,44 +195,12 @@ export const Admin: NextPage = () => {
               <Menu.Item icon={<FileOutlined />} key="pages">
                 <Link to="/admin/stranky/">Stránky</Link>
               </Menu.Item>
-              <Menu.Item disabled icon={<BarsOutlined />} key="navigation">
-                <Link to="/admin/navigace">Navigace</Link>
-              </Menu.Item>
               {userClaims.role === "admin" && (
                 <Menu.Item icon={<TeamOutlined />} key="users">
                   <Link to="/admin/uzivatele">Uživatelé</Link>
                 </Menu.Item>
               )}
-              {userClaims.role === "admin" && (
-                <Menu.Item disabled icon={<SettingOutlined />} key="settings">
-                  <Link to="/admin/nastaveni">Nastavení</Link>
-                </Menu.Item>
-              )}
             </Menu>
-            {userClaims.role === "admin" && (
-              <div
-                css={css`
-                  padding: 12px;
-                `}
-              >
-                <Tooltip
-                  placement="right"
-                  trigger={[]}
-                  overlay={deployStatus}
-                  visible={deployStatus !== "NOT"}
-                >
-                  <Button
-                    onClick={deploy}
-                    loading={deployStatus !== "NOT"}
-                    type="primary"
-                    icon={<FireOutlined />}
-                    block
-                  >
-                    {!isSidebarCollapsed && "Publikovat"}
-                  </Button>
-                </Tooltip>
-              </div>
-            )}
             <div
               css={css`
                 display: flex;
