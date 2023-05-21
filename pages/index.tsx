@@ -17,6 +17,10 @@ const Home: NextPage<Props> = ({ meta, navigation, page }) => (
   <div>
     <Head>
       <title>{meta.title}</title>
+      <meta
+        name="description"
+        content="Pojeď na Insomnii a pohlédni všem oblastem vedení přímo do očí. Těšíme se na tebe!"
+      />
 
       <link rel="icon" href={`/${PROJECT}/favicons/favicon.ico`} />
       <link
