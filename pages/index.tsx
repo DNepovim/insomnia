@@ -63,7 +63,7 @@ const Home: NextPage<Props> = ({ meta, navigation, page }) => (
     >
       <Navigation logo={`/${PROJECT}/images/logo.webp`} items={navigation} />
       {page.blocks
-        .filter((block) => !!block)
+        .filter((block) => !!block && !block.isHidden)
         .map(({ template, fields }) =>
           React.createElement(
             blockDefs[template as BlockTemplates].component,
