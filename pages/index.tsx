@@ -61,7 +61,7 @@ const Home: NextPage<Props> = ({ meta, navigation, page }) => (
         padding-top: 96px;
       `}
     >
-      <Navigation logo={`/${PROJECT}/images/logo.webp`} items={navigation} />
+{/*       <Navigation logo={`/${PROJECT}/images/logo.webp`} items={navigation} /> */}
       {page.blocks
         .filter((block) => !!block && !block.isHidden)
         .map(({ template, fields }) =>
