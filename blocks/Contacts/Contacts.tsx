@@ -1,18 +1,26 @@
 /** @jsxImportSource @emotion/react */
 import React from "react"
 import { css } from "@emotion/react"
-import { tp } from "../../admin/utils/tp"
+import { tp } from "../../utils/tp"
 import Image from "next/image"
 import { ParallaxBanner } from "react-scroll-parallax"
 import { theme } from "../../theme"
-import { Block } from "../../components/Block/Block"
-import { ContactsFields } from "./contactsDef"
-import { PROJECT } from "../../projects"
+import { Block, BlockFields } from "../../components/Block/Block"
 
-export const Contacts: React.FC<ContactsFields> = ({
+export interface ContactsProps extends BlockFields {
+  title: string
+  richText: string
+  contacts: {
+    type: string
+    icon: string
+    url: string
+  }[]
+}
+
+export const Contacts: React.FC<ContactsProps> = ({
   id,
   title,
-  subtitle,
+  richText,
   contacts,
 }) => (
   <Block id={id}>
@@ -22,8 +30,8 @@ export const Contacts: React.FC<ContactsFields> = ({
       `}
       layers={[
         {
-          image: `/${PROJECT}/images/sky_footer.webp`,
-          amount: 0.2,
+          image: "/images/sky_footer.webp",
+          speed: 0.2,
         },
       ]}
     >
@@ -56,7 +64,7 @@ export const Contacts: React.FC<ContactsFields> = ({
             color: white;
             font-size: 0.8em;
           `}
-          dangerouslySetInnerHTML={{ __html: tp(subtitle) }}
+          dangerouslySetInnerHTML={{ __html: richText }}
         />
         <div
           css={css`

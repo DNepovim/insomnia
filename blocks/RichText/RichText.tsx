@@ -1,16 +1,21 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react"
 import React from "react"
-import { tp } from "../../admin/utils/tp"
-import { Block } from "../../components/Block/Block"
+import { tp } from "../../utils/tp"
+import { Block, BlockFields } from "../../components/Block/Block"
 import { Container } from "../../components/Container/Container"
 import { Heading } from "../../components/Heading/Heading"
-import { RichTextFields } from "./richTextDef"
 
-export const RichText: React.FC<RichTextFields> = ({
+export interface RichTextProps extends BlockFields {
+  title: string
+  richText: string
+  textAlign: string
+}
+
+export const RichText: React.FC<RichTextProps> = ({
   id,
   title,
-  text,
+  richText,
   textAlign,
 }) => (
   <Block id={id}>
@@ -20,7 +25,7 @@ export const RichText: React.FC<RichTextFields> = ({
       `}
     >
       <Heading level={2}>{tp(title)}</Heading>
-      <div dangerouslySetInnerHTML={{ __html: tp(text) }} />
+      <div dangerouslySetInnerHTML={{ __html: richText }} />
     </Container>
   </Block>
 )

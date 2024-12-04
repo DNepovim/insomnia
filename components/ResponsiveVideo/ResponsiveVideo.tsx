@@ -2,7 +2,6 @@
 import { css } from "@emotion/react"
 import React, { useState } from "react"
 import Image from "next/image"
-import { PROJECT } from "../../projects"
 
 export interface ResponsiveVideoProps {
   src: string
@@ -70,7 +69,7 @@ export const ResponsiveVideo: React.FC<ResponsiveVideoProps> = ({
               cursor: pointer;
             `}
             onClick={() => setIsPlayed(true)}
-            src={`/${PROJECT}/icons/play.svg`}
+            src="/icons/play.svg"
             alt="play"
           />
         </>

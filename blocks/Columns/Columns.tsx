@@ -1,15 +1,35 @@
 /** @jsxImportSource @emotion/react */
 import React from "react"
 import { css } from "@emotion/react"
-import { tp } from "../../admin/utils/tp"
+import { tp } from "../../utils/tp"
 import { theme } from "../../theme"
 import { Container } from "../../components/Container/Container"
 import { Column } from "../../components/Column/Column"
 import { Heading } from "../../components/Heading/Heading"
-import { Block } from "../../components/Block/Block"
-import { ColumnsFields } from "./columnsDef"
+import { Block, BlockFields } from "../../components/Block/Block"
 
-export const Columns: React.FC<ColumnsFields> = ({ id, title, columns }) => (
+export enum Icons {
+  Sky = "sky",
+  Person = "person",
+  Hand = "hand",
+  Stars = "stars",
+  Arrow = "arrow",
+  Moon = "moon",
+  Mark = "mark",
+  Star = "star",
+  Check = "check",
+}
+
+export interface ColumnsProps extends BlockFields {
+  title: string
+  columns: {
+    title: string
+    richText: string
+    icon: Icons
+  }[]
+}
+
+export const Columns: React.FC<ColumnsProps> = ({ id, title, columns }) => (
   <Block id={id} withBackground>
     <Container>
       <Heading level={2}>{tp(title)}</Heading>

@@ -1,14 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react"
-import { tp } from "../../admin/utils/tp"
+import { tp } from "../../utils/tp"
 import React from "react"
 import { ParallaxBanner } from "react-scroll-parallax"
-import { Block } from "../../components/Block/Block"
+import { Block, BlockFields } from "../../components/Block/Block"
 import { theme } from "../../theme"
-import { QuotationFields } from "./quotationDef"
-import { PROJECT } from "../../projects"
 
-export const Quotation: React.FC<QuotationFields> = ({
+export interface QuotationProps extends BlockFields {
+  text: string
+  source: string
+  sourceUrl: string
+}
+
+export const Quotation: React.FC<QuotationProps> = ({
   id,
   text,
   source,
@@ -21,8 +25,8 @@ export const Quotation: React.FC<QuotationFields> = ({
       `}
       layers={[
         {
-          image: `/${PROJECT}/images/sky.webp`,
-          amount: 0.2,
+          image: "/images/sky.webp",
+          speed: 0.2,
         },
       ]}
     >

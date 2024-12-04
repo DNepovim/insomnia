@@ -1,17 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import React, { useCallback, useEffect, useRef, useState } from "react"
-import Image, { ImageProps } from "next/image"
+import Image from "next/image"
 import { theme } from "../../theme"
 import { css } from "@emotion/react"
 import styled from "@emotion/styled"
 import Hamburger from "hamburger-react"
 import { useWindowWidth } from "@react-hook/window-size"
 import useScrollPosition from "@react-hook/window-scroll"
-import AnchorLink from "react-anchor-link-smooth-scroll"
 import useOnClickOutside from "use-onclickoutside"
 import { Container } from "../Container/Container"
 
-interface NavigationItem {
+export interface NavigationItem {
   title: string
   link: string
 }
@@ -71,10 +70,7 @@ export const Navigation: React.FC<{
         `}
       >
         <Nav ref={navRef}>
-          <AnchorLink
-            href={`#${items[0].link}`}
-            onClick={() => setIsOpened(false)}
-          >
+          <a href={`#${items[0].link}`} onClick={() => setIsOpened(false)}>
             <Image
               css={css`
                 padding: 8px;
@@ -86,7 +82,7 @@ export const Navigation: React.FC<{
               width={scrollPosition > 50 ? 50 : 90}
               height={scrollPosition > 50 ? 50 : 90}
             />
-          </AnchorLink>
+          </a>
           {!isMobile && (
             <NavList>
               {items.map((item) => (
@@ -165,7 +161,7 @@ const activeNavLink = css`
   }
 `
 
-const NavLink = styled(AnchorLink)(
+const NavLink = styled.a(
   (props: { active: boolean }) => css`
     position: relative;
     display: block;
@@ -210,7 +206,7 @@ const NavListMobile = styled.ul(
 `
 )
 
-const NavLinkMobile = styled(AnchorLink)`
+const NavLinkMobile = styled.a`
   display: block;
   color: black;
   padding: 0.6em 1.6em;

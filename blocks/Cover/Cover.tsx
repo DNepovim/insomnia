@@ -1,17 +1,28 @@
 /** @jsxImportSource @emotion/react */
 import React from "react"
 import Snowfall from "react-snowfall"
-import { tp } from "../../admin/utils/tp"
+import { tp } from "../../utils/tp"
 import { theme } from "../../theme"
 import { css } from "@emotion/react"
 import { ParallaxBanner } from "react-scroll-parallax"
 import { Container } from "../../components/Container/Container"
-import { Block } from "../../components/Block/Block"
-import { CoverFields } from "./coverDef"
+import { Block, BlockFields } from "../../components/Block/Block"
 import { Button } from "../../components/Button/Button"
-import { PROJECT } from "../../projects"
 
-export const Cover: React.FC<CoverFields> = ({
+export interface CoverProps extends BlockFields {
+  title: string
+  subtitle: string
+  claim: string
+  button: {
+    label: string
+    link: string
+    targetBlank?: boolean
+    showButton?: boolean
+  }
+  isSnowfall?: boolean
+}
+
+export const Cover: React.FC<CoverProps> = ({
   id,
   title,
   subtitle,
@@ -23,8 +34,8 @@ export const Cover: React.FC<CoverFields> = ({
     <ParallaxBanner
       layers={[
         {
-          image: `/${PROJECT}/images/cover.webp`,
-          amount: 0.2,
+          image: "/images/cover.webp",
+          speed: 0.2,
         },
       ]}
       css={css`

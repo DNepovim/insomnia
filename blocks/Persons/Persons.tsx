@@ -1,15 +1,24 @@
 /** @jsxImportSource @emotion/react */
 import React from "react"
 import { css } from "@emotion/react"
-import { tp } from "../../admin/utils/tp"
+import { tp } from "../../utils/tp"
 import { Container } from "../../components/Container/Container"
 import { Heading } from "../../components/Heading/Heading"
 import Image from "next/image"
-import { Block } from "../../components/Block/Block"
-import { PersonsFields } from "./personsDef"
-import { PROJECT } from "../../projects"
+import { Block, BlockFields } from "../../components/Block/Block"
 
-export const Persons: React.FC<PersonsFields> = ({
+export interface PersonsProps extends BlockFields {
+  title: string
+  subtitle: string
+  persons: {
+    nick: string
+    name: string
+    richText: string
+    image: string
+  }[]
+}
+
+export const Persons: React.FC<PersonsProps> = ({
   id,
   title,
   subtitle,
@@ -68,7 +77,7 @@ export const Persons: React.FC<PersonsFields> = ({
                 border-radius: 50%;
                 margin: 1em auto;
               `}
-              src={`/${PROJECT}/images/${person.image}.webp`}
+              src={`/images/${person.image}.webp`}
               alt={person.nick}
               width={170}
               height={170}
@@ -90,7 +99,7 @@ export const Persons: React.FC<PersonsFields> = ({
           >
             <strong>{tp(person.name)}</strong>
           </p>
-          <p dangerouslySetInnerHTML={{ __html: tp(person.text) }} />
+          <p dangerouslySetInnerHTML={{ __html: person.richText }} />
         </article>
       ))}
     </div>

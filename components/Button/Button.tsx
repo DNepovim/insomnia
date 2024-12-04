@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import React from "react"
+import React, { PropsWithChildren } from "react"
 import { css } from "@emotion/react"
 import { theme } from "../../theme"
 
-export interface ButtonProps {
+export interface ButtonProps extends PropsWithChildren {
   link: string
   targetBlank: boolean
 }

@@ -4,14 +4,19 @@ import React from "react"
 import { Container } from "../../components/Container/Container"
 import Image from "next/image"
 import { theme } from "../../theme"
-import { Block } from "../../components/Block/Block"
-import { GalleryFields } from "./galleryDef"
-import { PROJECT } from "../../projects"
+import { Block, BlockFields } from "../../components/Block/Block"
 import { Button } from "../../components/Button/Button"
 
 const gap = 4
+export interface GalleryProps extends BlockFields {
+  images: string[]
+  button: {
+    label: string
+    link: string
+  }
+}
 
-export const Gallery: React.FC<GalleryFields> = ({ id, images, button }) => (
+export const Gallery: React.FC<GalleryProps> = ({ id, images, button }) => (
   <Block id={id}>
     <Container
       css={css`
@@ -20,7 +25,7 @@ export const Gallery: React.FC<GalleryFields> = ({ id, images, button }) => (
         justify-content: space-between;
       `}
     >
-      {images.map((image, i) => (
+      {images.map((_, i) => (
         <figure
           key={1}
           css={css`
@@ -39,7 +44,7 @@ export const Gallery: React.FC<GalleryFields> = ({ id, images, button }) => (
           `}
         >
           <Image
-            src={`/${PROJECT}/images/${image}.webp`}
+            src="/images/${image}.webp"
             alt={`Fotka ${i}`}
             width={theme.layout.width / 3}
             height={(theme.layout.width / 3) * 0.7}
