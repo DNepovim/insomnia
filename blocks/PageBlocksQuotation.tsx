@@ -1,18 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react"
-import { tp } from "../../utils/tp"
+import { tp } from "../utils/tp"
 import React from "react"
 import { ParallaxBanner } from "react-scroll-parallax"
-import { Block, BlockFields } from "../../components/Block/Block"
-import { theme } from "../../theme"
+import { Block, BlockFields } from "../components/Block/Block"
+import { theme } from "../theme"
+import { PageBlocksQuotation } from "../tina/__generated__/types"
 
-export interface QuotationProps extends BlockFields {
-  text: string
-  source: string
-  sourceUrl: string
-}
-
-export const Quotation: React.FC<QuotationProps> = ({
+const Quotation: React.FC<PageBlocksQuotation> = ({
   id,
   text,
   source,
@@ -66,10 +61,14 @@ export const Quotation: React.FC<QuotationProps> = ({
         >
           {text}
         </blockquote>
-        <a href={sourceUrl} target="_blank" rel="noreferrer noopener">
-          {tp(source)}
-        </a>
+        {source && (
+          <a href={sourceUrl ?? ""} target="_blank" rel="noreferrer noopener">
+            {source}
+          </a>
+        )}
       </div>
     </ParallaxBanner>
   </Block>
 )
+
+export default Quotation

@@ -1,22 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react"
 import React from "react"
-import { Container } from "../../components/Container/Container"
+import { Container } from "../components/Container/Container"
 import Image from "next/image"
-import { theme } from "../../theme"
-import { Block, BlockFields } from "../../components/Block/Block"
-import { Button } from "../../components/Button/Button"
+import { theme } from "../theme"
+import { Block, BlockFields } from "../components/Block/Block"
+import { Button } from "../components/Button/Button"
+import { PageBlocksGallery } from "../tina/__generated__/types"
 
 const gap = 4
-export interface GalleryProps extends BlockFields {
-  images: string[]
-  button: {
-    label: string
-    link: string
-  }
-}
 
-export const Gallery: React.FC<GalleryProps> = ({ id, images, button }) => (
+const Gallery: React.FC<PageBlocksGallery> = ({ id, images, button }) => (
   <Block id={id}>
     <Container
       css={css`
@@ -25,7 +19,7 @@ export const Gallery: React.FC<GalleryProps> = ({ id, images, button }) => (
         justify-content: space-between;
       `}
     >
-      {images.map((_, i) => (
+      {(images ?? []).map((_, i) => (
         <figure
           key={1}
           css={css`
@@ -57,15 +51,19 @@ export const Gallery: React.FC<GalleryProps> = ({ id, images, button }) => (
           />
         </figure>
       ))}
-      <div
-        css={css`
-          margin: 0 auto;
-        `}
-      >
-        <Button link={button.link} targetBlank>
-          {button.label}
-        </Button>
-      </div>
+      {button && (
+        <div
+          css={css`
+            margin: 0 auto;
+          `}
+        >
+          <Button link={button.link} targetBlank>
+            {button.label}
+          </Button>
+        </div>
+      )}
     </Container>
   </Block>
 )
+
+export default Gallery

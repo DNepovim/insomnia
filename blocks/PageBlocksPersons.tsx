@@ -1,24 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import React from "react"
 import { css } from "@emotion/react"
-import { tp } from "../../utils/tp"
-import { Container } from "../../components/Container/Container"
-import { Heading } from "../../components/Heading/Heading"
+import { tp } from "../utils/tp"
+import { Container } from "../components/Container/Container"
+import { Heading } from "../components/Heading/Heading"
 import Image from "next/image"
-import { Block, BlockFields } from "../../components/Block/Block"
+import { Block, BlockFields } from "../components/Block/Block"
+import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text"
+import { PageBlocksPersons } from "../tina/__generated__/types"
+import { isDefined } from "../utils/hooks/isDefined"
 
-export interface PersonsProps extends BlockFields {
-  title: string
-  subtitle: string
-  persons: {
-    nick: string
-    name: string
-    richText: string
-    image: string
-  }[]
-}
-
-export const Persons: React.FC<PersonsProps> = ({
+const Persons: React.FC<PageBlocksPersons> = ({
   id,
   title,
   subtitle,
@@ -47,7 +39,7 @@ export const Persons: React.FC<PersonsProps> = ({
         justify-content: center;
       `}
     >
-      {persons.map((person, i) => (
+      {(persons ?? []).filter(isDefined).map((person, i) => (
         <article
           key={i}
           css={css`
@@ -99,9 +91,11 @@ export const Persons: React.FC<PersonsProps> = ({
           >
             <strong>{tp(person.name)}</strong>
           </p>
-          <p dangerouslySetInnerHTML={{ __html: person.richText }} />
+          <TinaMarkdown content={person.richText} />
         </article>
       ))}
     </div>
   </Block>
 )
+
+export default Persons

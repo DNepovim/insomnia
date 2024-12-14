@@ -1,23 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import React from "react"
 import { css } from "@emotion/react"
-import { tp } from "../../utils/tp"
+import { tp } from "../utils/tp"
 import Image from "next/image"
 import { ParallaxBanner } from "react-scroll-parallax"
-import { theme } from "../../theme"
-import { Block, BlockFields } from "../../components/Block/Block"
+import { theme } from "../theme"
+import { Block, BlockFields } from "../components/Block/Block"
+import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text"
+import { PageBlocksContacts } from "../tina/__generated__/types"
+import { isDefined } from "../utils/hooks/isDefined"
 
-export interface ContactsProps extends BlockFields {
-  title: string
-  richText: string
-  contacts: {
-    type: string
-    icon: string
-    url: string
-  }[]
-}
-
-export const Contacts: React.FC<ContactsProps> = ({
+const Contacts: React.FC<PageBlocksContacts> = ({
   id,
   title,
   richText,
@@ -57,22 +50,16 @@ export const Contacts: React.FC<ContactsProps> = ({
             margin-bottom: 4px;
           `}
         >
-          {tp(title)}
+          {title}
         </h2>
-        <p
-          css={css`
-            color: white;
-            font-size: 0.8em;
-          `}
-          dangerouslySetInnerHTML={{ __html: richText }}
-        />
+        <TinaMarkdown content={richText} />
         <div
           css={css`
             display: flex;
             justify-content: center;
           `}
         >
-          {contacts.map((contact) => (
+          {(contacts ?? []).filter(isDefined).map((contact) => (
             <a
               key={contact.type}
               href={getHref(contact.url)}
@@ -100,3 +87,5 @@ export const Contacts: React.FC<ContactsProps> = ({
 
 const getHref = (url: string): string =>
   url.includes("@") ? `mailto:${url}` : url
+
+export default Contacts

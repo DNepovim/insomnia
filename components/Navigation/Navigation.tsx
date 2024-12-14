@@ -1,5 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import React, { useCallback, useEffect, useRef, useState } from "react"
+import React, {
+  RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 import Image from "next/image"
 import { theme } from "../../theme"
 import { css } from "@emotion/react"
@@ -26,13 +32,13 @@ export const Navigation: React.FC<{
   const [activeItem, setActiveItem] = useState<string | undefined>()
   const width = useWindowWidth()
   const scrollPosition = useScrollPosition()
-  const navRef = useRef(null)
+  const navRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     setIsMobile(width < BREAKPOINT)
   }, [width])
 
-  useOnClickOutside(navRef, () => setIsOpened(false))
+  useOnClickOutside(navRef as RefObject<HTMLElement>, () => setIsOpened(false))
 
   const onScrollHandler = useCallback(
     (scrollPossition: number) => {

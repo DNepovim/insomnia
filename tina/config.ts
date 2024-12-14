@@ -85,24 +85,27 @@ const contactsBlock: Template = {
       name: "contacts",
       list: true,
       ui: {
-        itemProps: (item) => ({ label: item.title }),
+        itemProps: (item) => ({ label: item.type }),
       },
       fields: [
         {
           type: "string",
           label: "Typ",
           name: "type",
+          required: true,
         },
         {
           type: "string",
           label: "Ikona",
           name: "icon",
           options: ["mail", "fb", "insta"],
+          required: true,
         },
         {
           type: "string",
           label: "Odkaz",
           name: "url",
+          required: true,
         },
       ],
     },
@@ -146,11 +149,13 @@ const coverBlock: Template = {
           type: "string",
           label: "Popis",
           name: "label",
+          required: true,
         },
         {
           type: "string",
           label: "Odkaz",
           name: "link",
+          required: true,
         },
         {
           type: "boolean",
@@ -190,11 +195,13 @@ const galleryBlock: Template = {
           type: "string",
           label: "Popis",
           name: "label",
+          required: true,
         },
         {
           type: "string",
           label: "Odkaz",
           name: "link",
+          required: true,
         },
       ],
     },
@@ -312,31 +319,27 @@ const videoBlock: Template = {
   name: "video",
   label: "Video",
   ui: {
-    itemProps: (item) => ({ label: `${item.title} [Video]` }),
+    itemProps: () => ({ label: `Video [video]` }),
   },
   fields: [
     ...globalBlockFields,
     {
-      type: "object",
-      label: "Video",
-      name: "video",
-      fields: [
-        {
-          type: "string",
-          label: "Odkaz",
-          name: "src",
-        },
-        {
-          type: "number",
-          label: "Šířka",
-          name: "width",
-        },
-        {
-          type: "number",
-          label: "Výška",
-          name: "height",
-        },
-      ],
+      type: "string",
+      label: "Kód videa",
+      name: "src",
+      required: true,
+    },
+    {
+      type: "number",
+      label: "Šířka",
+      name: "width",
+      required: true,
+    },
+    {
+      type: "number",
+      label: "Výška",
+      name: "height",
+      required: true,
     },
   ],
 }

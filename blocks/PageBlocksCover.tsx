@@ -1,28 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import React from "react"
 import Snowfall from "react-snowfall"
-import { tp } from "../../utils/tp"
-import { theme } from "../../theme"
+import { tp } from "../utils/tp"
 import { css } from "@emotion/react"
 import { ParallaxBanner } from "react-scroll-parallax"
-import { Container } from "../../components/Container/Container"
-import { Block, BlockFields } from "../../components/Block/Block"
-import { Button } from "../../components/Button/Button"
+import { Container } from "../components/Container/Container"
+import { Block } from "../components/Block/Block"
+import { Button } from "../components/Button/Button"
+import { PageBlocksCover } from "../tina/__generated__/types"
+import { theme } from "../theme"
 
-export interface CoverProps extends BlockFields {
-  title: string
-  subtitle: string
-  claim: string
-  button: {
-    label: string
-    link: string
-    targetBlank?: boolean
-    showButton?: boolean
-  }
-  isSnowfall?: boolean
-}
-
-export const Cover: React.FC<CoverProps> = ({
+const Cover: React.FC<PageBlocksCover> = ({
   id,
   title,
   subtitle,
@@ -36,18 +24,12 @@ export const Cover: React.FC<CoverProps> = ({
         {
           image: "/images/cover.webp",
           speed: 0.2,
+          opacity: [1.5, 0],
+          translateY: [-20, 100],
         },
       ]}
       css={css`
-        height: auto !important;
-
-        .parallax-outer {
-          background-color: black;
-        }
-
-        .parallax-banner-layer-0 {
-          opacity: 0.5;
-        }
+        background-color: black;
       `}
     >
       {isSnowfall && <Snowfall />}
@@ -77,7 +59,7 @@ export const Cover: React.FC<CoverProps> = ({
               margin: 0 0 4px;
             `}
           >
-            {tp(subtitle)}
+            {subtitle}
           </p>
         )}
         {claim && (
@@ -87,10 +69,11 @@ export const Cover: React.FC<CoverProps> = ({
               color: white;
               margin: 0 0 32px;
             `}
-            dangerouslySetInnerHTML={{ __html: tp(claim) }}
-          />
+          >
+            {claim}
+          </p>
         )}
-        {button.showButton && (
+        {button?.showButton && (
           <Button link={button.link} targetBlank>
             {button.label}
           </Button>
@@ -99,3 +82,5 @@ export const Cover: React.FC<CoverProps> = ({
     </ParallaxBanner>
   </Block>
 )
+
+export default Cover

@@ -4,7 +4,7 @@ import React, { PropsWithChildren } from "react"
 import { theme } from "../../theme"
 
 export interface BlockFields extends PropsWithChildren {
-  id?: string
+  id?: string | null
   withBackground?: boolean
 }
 
@@ -14,7 +14,7 @@ export const Block: React.FC<BlockFields> = ({
   children,
 }) => (
   <section
-    id={id}
+    id={id ?? undefined}
     css={
       withBackground
         ? css`

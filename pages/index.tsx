@@ -104,7 +104,7 @@ const Home: NextPage<HomeProps> = ({ pages, navigation, settings }) => {
       >
         <Navigation
           logo="/images/logo.webp"
-          items={(navigation.data.navigation.items ?? []).map((item) => ({
+          items={(navigationData.data.navigation.items ?? []).map((item) => ({
             title: item?.title ?? "",
             link: item?.link ?? "",
           }))}
@@ -113,6 +113,7 @@ const Home: NextPage<HomeProps> = ({ pages, navigation, settings }) => {
           const Component = dynamic(
             () => import(`../blocks/${block?.__typename}`)
           )
+          console.log(Component)
           return React.createElement(Component, { ...block, key: i })
         })}
       </main>

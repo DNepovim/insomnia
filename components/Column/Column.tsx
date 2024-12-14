@@ -3,10 +3,11 @@ import React from "react"
 import { css } from "@emotion/react"
 import { tp } from "../../utils/tp"
 import Image from "next/image"
+import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text"
 
 export interface ColumnProps {
   title: string
-  richText: string
+  richText: TinaMarkdownContent
   icon: string
 }
 
@@ -38,13 +39,6 @@ export const Column: React.FC<ColumnProps> = ({ title, richText, icon }) => (
         {tp(title)}
       </h3>
     </header>
-    <div
-      css={css`
-        ul {
-          margin: 0;
-        }
-      `}
-      dangerouslySetInnerHTML={{ __html: richText }}
-    />
+    <TinaMarkdown content={richText} />
   </article>
 )

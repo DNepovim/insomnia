@@ -1,6 +1,10 @@
 {
   "items": [
     {
+      "title": "Domů",
+      "link": "domu"
+    },
+    {
       "title": "Tým",
       "link": "tym"
     }
