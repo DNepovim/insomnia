@@ -5,8 +5,8 @@ import { tp } from "../utils/tp"
 import Image from "next/image"
 import { ParallaxBanner } from "react-scroll-parallax"
 import { theme } from "../theme"
-import { Block, BlockFields } from "../components/Block/Block"
-import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text"
+import { Block } from "../components/Block/Block"
+import { TinaMarkdown } from "tinacms/dist/rich-text"
 import { PageBlocksContacts } from "../tina/__generated__/types"
 import { isDefined } from "../utils/hooks/isDefined"
 
@@ -23,7 +23,7 @@ const Contacts: React.FC<PageBlocksContacts> = ({
       `}
       layers={[
         {
-          image: "/images/sky_footer.webp",
+          image: "/uploads/sky_footer.webp",
           speed: 0.2,
         },
       ]}
@@ -72,7 +72,7 @@ const Contacts: React.FC<PageBlocksContacts> = ({
                   height: 3em;
                   margin-right: 8px !important;
                 `}
-                src={`/insomnia/icons/${contact.icon}.svg`}
+                src={`/icons/${contact.icon}.svg`}
                 alt=""
                 width={70}
                 height={70}

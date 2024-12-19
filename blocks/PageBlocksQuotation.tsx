@@ -20,7 +20,7 @@ const Quotation: React.FC<PageBlocksQuotation> = ({
       `}
       layers={[
         {
-          image: "/images/sky.webp",
+          image: "/uploads/sky.webp",
           speed: 0.2,
         },
       ]}

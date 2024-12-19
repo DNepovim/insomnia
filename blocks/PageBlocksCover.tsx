@@ -22,7 +22,7 @@ const Cover: React.FC<PageBlocksCover> = ({
     <ParallaxBanner
       layers={[
         {
-          image: "/images/cover.webp",
+          image: "/uploads/cover.webp",
           speed: 0.2,
           opacity: [1.5, 0],
           translateY: [-20, 100],

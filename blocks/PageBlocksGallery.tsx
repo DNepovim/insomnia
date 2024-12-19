@@ -7,6 +7,7 @@ import { theme } from "../theme"
 import { Block, BlockFields } from "../components/Block/Block"
 import { Button } from "../components/Button/Button"
 import { PageBlocksGallery } from "../tina/__generated__/types"
+import { isDefined } from "../utils/hooks/isDefined"
 
 const gap = 4
 
@@ -19,7 +20,7 @@ const Gallery: React.FC<PageBlocksGallery> = ({ id, images, button }) => (
         justify-content: space-between;
       `}
     >
-      {(images ?? []).map((_, i) => (
+      {(images ?? []).filter(isDefined).map((image, i) => (
         <figure
           key={1}
           css={css`
@@ -38,7 +39,7 @@ const Gallery: React.FC<PageBlocksGallery> = ({ id, images, button }) => (
           `}
         >
           <Image
-            src="/images/${image}.webp"
+            src={image}
             alt={`Fotka ${i}`}
             width={theme.layout.width / 3}
             height={(theme.layout.width / 3) * 0.7}
