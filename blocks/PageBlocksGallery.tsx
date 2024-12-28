@@ -9,53 +9,59 @@ import { Button } from "../components/Button/Button"
 import { PageBlocksGallery } from "../tina/__generated__/types"
 import { isDefined } from "../utils/hooks/isDefined"
 
-const gap = 4
+const gap = 16
 
 const Gallery: React.FC<PageBlocksGallery> = ({ id, images, button }) => (
   <Block id={id}>
     <Container
       css={css`
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        text-align: center;
       `}
     >
-      {(images ?? []).filter(isDefined).map((image, i) => (
-        <figure
-          key={1}
-          css={css`
-            box-sizing: border-box;
-            text-align: center;
-            width: calc(100% - ${gap * 2}px);
-            margin: ${gap}px 0;
+      <div
+        css={css`
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: ${gap}px;
 
-            @media (min-width: 500px) {
-              width: calc(100% / 2 - ${gap * 2}px);
-            }
+          @media (min-width: 500px) {
+            grid-template-columns: 1fr 1fr;
+          }
 
-            @media (min-width: 700px) {
-              width: calc(100% / 3 - ${gap * 2}px);
-            }
-          `}
-        >
-          <Image
-            src={image}
-            alt={`Fotka ${i}`}
-            width={theme.layout.width / 3}
-            height={(theme.layout.width / 3) * 0.7}
-            lazyBoundary="600px"
+          @media (min-width: 700px) {
+            grid-template-columns: 1fr 1fr 1fr;
+          }
+        `}
+      >
+        {(images ?? []).filter(isDefined).map((image, i) => (
+          <figure
+            key={i}
             css={css`
-              background-color: ${theme.color.brand};
+              margin: 0;
+              width: 100%;
             `}
-            objectFit="cover"
-            objectPosition="center"
-          />
-        </figure>
-      ))}
+          >
+            <Image
+              src={image}
+              alt={`Fotka ${i}`}
+              width={theme.layout.width / 3}
+              height={(theme.layout.width / 3) * 0.7}
+              lazyBoundary="600px"
+              css={css`
+                background-color: ${theme.color.brand};
+                max-width: 100%;
+              `}
+              objectFit="cover"
+              objectPosition="center"
+            />
+          </figure>
+        ))}
+      </div>
       {button && (
         <div
           css={css`
-            margin: 0 auto;
+            display: inline-block;
+            margin: 2rem auto;
           `}
         >
           <Button link={button.link} targetBlank>
