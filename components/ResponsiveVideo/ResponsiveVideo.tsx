@@ -16,7 +16,7 @@ export const ResponsiveVideo: React.FC<ResponsiveVideoProps> = ({
 }) => {
   const [isPlayed, setIsPlayed] = useState(false)
   return (
-    <figure
+    (<figure
       css={css`
         position: relative;
         width: 100%;
@@ -52,11 +52,13 @@ export const ResponsiveVideo: React.FC<ResponsiveVideoProps> = ({
         <>
           <Image
             src={`https://img.youtube.com/vi/${src}/sddefault.jpg`}
-            layout="fill"
-            objectFit="cover"
             alt="yt thumbnail"
             priority
-          />
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: "cover"
+            }} />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             css={css`
@@ -74,6 +76,6 @@ export const ResponsiveVideo: React.FC<ResponsiveVideoProps> = ({
           />
         </>
       )}
-    </figure>
-  )
+    </figure>)
+  );
 }
