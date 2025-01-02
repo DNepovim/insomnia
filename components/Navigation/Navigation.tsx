@@ -24,7 +24,7 @@ export interface NavigationItem {
 const BREAKPOINT = 600
 
 export const Navigation: React.FC<{
-  logo: string
+  logo?: string
   items: NavigationItem[]
 }> = ({ logo, items }) => {
   const [isOpened, setIsOpened] = useState(false)
@@ -76,19 +76,25 @@ export const Navigation: React.FC<{
         `}
       >
         <Nav ref={navRef}>
-          <a href={`#${items[0].link}`} onClick={() => setIsOpened(false)}>
-            <Image
-              css={css`
-                padding: 8px;
-                width: auto;
-                height: 100%;
-              `}
-              src={logo}
-              alt="Insomnia – logo"
-              width={scrollPosition > 50 ? 50 : 90}
-              height={scrollPosition > 50 ? 50 : 90}
-            />
-          </a>
+          {logo && (
+            <a href={`#${items[0].link}`} onClick={() => setIsOpened(false)}>
+              <Image
+                css={css`
+                  padding: 8px;
+                  width: auto;
+                  height: 100%;
+                `}
+                src={logo}
+                alt="Insomnia – logo"
+                width={scrollPosition > 50 ? 50 : 90}
+                height={scrollPosition > 50 ? 50 : 90}
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                }}
+              />
+            </a>
+          )}
           {!isMobile && (
             <NavList>
               {items.map((item) => (

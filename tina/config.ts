@@ -378,7 +378,10 @@ export const config = defineConfig({
         ui: {
           allowedActions: { delete: false, create: false },
         },
-        fields: [{ name: "siteTitle", label: "Název webu", type: "string" }],
+        fields: [
+          { name: "siteTitle", label: "Název webu", type: "string" },
+          { name: "siteLogo", label: "Logo", type: "image" },
+        ],
       },
       {
         name: "navigation",

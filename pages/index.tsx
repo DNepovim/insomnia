@@ -98,12 +98,12 @@ const Home: NextPage<HomeProps> = ({ pages, navigation, settings }) => {
 
       <main
         css={css`
-          min-height: 300vh;
+          min-height: 100vh;
           padding-top: 96px;
         `}
       >
         <Navigation
-          logo="/images/logo.webp"
+          logo={settingsData.data.settings.siteLogo ?? undefined}
           items={(navigationData.data.navigation.items ?? []).map((item) => ({
             title: item?.title ?? "",
             link: item?.link ?? "",
