@@ -76,7 +76,10 @@ const Contacts: React.FC<PageBlocksContacts> = ({
                 alt=""
                 width={70}
                 height={70}
-              />
+                style={{
+                  maxWidth: "100%",
+                  height: "auto"
+                }} />
             </a>
           ))}
         </div>

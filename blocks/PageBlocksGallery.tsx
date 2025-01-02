@@ -46,14 +46,16 @@ const Gallery: React.FC<PageBlocksGallery> = ({ id, images, button }) => (
               alt={`Fotka ${i}`}
               width={theme.layout.width / 3}
               height={(theme.layout.width / 3) * 0.7}
-              lazyBoundary="600px"
               css={css`
                 background-color: ${theme.color.brand};
                 max-width: 100%;
               `}
-              objectFit="cover"
-              objectPosition="center"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+                objectFit: "cover",
+                objectPosition: "center"
+              }} />
           </figure>
         ))}
       </div>

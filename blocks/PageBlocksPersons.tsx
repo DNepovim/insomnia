@@ -73,8 +73,10 @@ const Persons: React.FC<PageBlocksPersons> = ({
               alt={person.nick}
               width={170}
               height={170}
-              lazyBoundary="600px"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </figure>
           <h3
             css={css`

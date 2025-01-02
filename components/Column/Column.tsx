@@ -29,8 +29,10 @@ export const Column: React.FC<ColumnProps> = ({ title, richText, icon }) => (
         alt=""
         width={80}
         height={80}
-        lazyBoundary="600px"
-      />
+        style={{
+          maxWidth: "100%",
+          height: "auto"
+        }} />
       <h3
         css={css`
           margin: 0 0 10px;
