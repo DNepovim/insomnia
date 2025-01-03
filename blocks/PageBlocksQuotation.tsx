@@ -34,6 +34,7 @@ const Quotation: React.FC<PageBlocksQuotation> = ({
           max-width: 800px;
           height: 100%;
           margin: 0 auto;
+          padding: 4rem 0;
         `}
       >
         <blockquote
