@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from "react"
-import { css } from "@emotion/react"
-import { tp } from "../utils/tp"
+import { css, Interpolation, Theme } from "@emotion/react"
 import Image from "next/image"
 import { ParallaxBanner } from "react-scroll-parallax"
 import { theme } from "../theme"
@@ -52,7 +51,20 @@ const Contacts: React.FC<PageBlocksContacts> = ({
         >
           {title}
         </h2>
-        <TinaMarkdown content={richText} />
+        <TinaMarkdown
+          content={richText}
+          components={{
+            p: ({ children }) => (
+              <p
+                css={css`
+                  color: white;
+                `}
+              >
+                {children}
+              </p>
+            ),
+          }}
+        />
         <div
           css={css`
             display: flex;
@@ -78,8 +90,9 @@ const Contacts: React.FC<PageBlocksContacts> = ({
                 height={70}
                 style={{
                   maxWidth: "100%",
-                  height: "auto"
-                }} />
+                  height: "auto",
+                }}
+              />
             </a>
           ))}
         </div>

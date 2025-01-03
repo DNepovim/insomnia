@@ -6,6 +6,11 @@ const globalBlockFields: Template["fields"] = [
     label: "Kotva",
     name: "id",
   },
+  {
+    type: "boolean",
+    label: "Skrýt blok",
+    name: "isHidden",
+  },
 ]
 
 const columnsBlock: Template = {
@@ -34,6 +39,7 @@ const columnsBlock: Template = {
           type: "string",
           label: "Nadpis",
           name: "title",
+          required: true,
         },
         {
           type: "rich-text",
@@ -423,6 +429,7 @@ export const config = defineConfig({
         format: "mdx",
         ui: {
           allowedActions: { delete: false, create: false },
+          router: () => "/",
         },
         fields: [
           {

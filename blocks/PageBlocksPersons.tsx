@@ -62,21 +62,24 @@ const Persons: React.FC<PageBlocksPersons> = ({
               }
             `}
           >
-            <Image
-              css={css`
-                width: 5em;
-                height: 5em;
-                border-radius: 50%;
-                margin: 1em auto;
-              `}
-              src={`/images/${person.image}.webp`}
-              alt={person.nick}
-              width={170}
-              height={170}
-              style={{
-                maxWidth: "100%",
-                height: "auto"
-              }} />
+            {person.image && (
+              <Image
+                css={css`
+                  width: 5em;
+                  height: 5em;
+                  border-radius: 50%;
+                  margin: 1em auto;
+                `}
+                src={person.image}
+                alt={person.nick}
+                width={170}
+                height={170}
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                }}
+              />
+            )}
           </figure>
           <h3
             css={css`

@@ -3,15 +3,14 @@ import React from "react"
 import { css } from "@emotion/react"
 import { tp } from "../../utils/tp"
 import Image from "next/image"
-import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text"
+import { TinaMarkdown } from "tinacms/dist/rich-text"
+import { PageBlocksColumnsColumns } from "../../tina/__generated__/types"
 
-export interface ColumnProps {
-  title: string
-  richText: TinaMarkdownContent
-  icon: string
-}
-
-export const Column: React.FC<ColumnProps> = ({ title, richText, icon }) => (
+export const Column: React.FC<PageBlocksColumnsColumns> = ({
+  title,
+  richText,
+  icon,
+}) => (
   <article>
     <header
       css={css`
@@ -31,8 +30,9 @@ export const Column: React.FC<ColumnProps> = ({ title, richText, icon }) => (
         height={80}
         style={{
           maxWidth: "100%",
-          height: "auto"
-        }} />
+          height: "auto",
+        }}
+      />
       <h3
         css={css`
           margin: 0 0 10px;

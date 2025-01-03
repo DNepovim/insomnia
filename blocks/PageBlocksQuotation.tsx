@@ -1,9 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react"
-import { tp } from "../utils/tp"
 import React from "react"
 import { ParallaxBanner } from "react-scroll-parallax"
-import { Block, BlockFields } from "../components/Block/Block"
+import { Block } from "../components/Block/Block"
 import { theme } from "../theme"
 import { PageBlocksQuotation } from "../tina/__generated__/types"
 

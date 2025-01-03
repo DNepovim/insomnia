@@ -5,7 +5,7 @@ import dynamic from "next/dynamic"
 import Head from "next/head"
 import React from "react"
 import { useTina } from "tinacms/dist/react"
-import { Navigation, NavigationItem } from "../components/Navigation/Navigation"
+import { Navigation } from "../components/Navigation/Navigation"
 import { fonts } from "../fonts"
 import { globalStyles } from "../globalStyles"
 import { theme } from "../theme"
@@ -109,13 +109,15 @@ const Home: NextPage<HomeProps> = ({ pages, navigation, settings }) => {
             link: item?.link ?? "",
           }))}
         />
-        {(pagesData.data.page.blocks ?? []).map((block, i) => {
-          const Component = dynamic(
-            () => import(`../blocks/${block?.__typename}`)
-          )
-          console.log(Component)
-          return React.createElement(Component, { ...block, key: i })
-        })}
+        {(pagesData.data.page.blocks ?? [])
+          .filter((b) => b?.isHidden !== true)
+          .map((block, i) => {
+            const Component = dynamic(
+              () => import(`../blocks/${block?.__typename}`)
+            )
+            console.log(Component)
+            return React.createElement(Component, { ...block, key: i })
+          })}
       </main>
     </div>
   )
