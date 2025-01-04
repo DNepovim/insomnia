@@ -2,7 +2,16 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["img.youtube.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "img.youtube.com",
+      },
+      {
+        protocol: "https",
+        hostname: "assets.tina.io",
+      },
+    ],
   },
   i18n: {
     locales: ["cs"],
