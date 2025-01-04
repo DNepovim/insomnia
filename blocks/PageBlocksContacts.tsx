@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
-import React from "react"
+import React, { ReactNode } from "react"
 import { css, Interpolation, Theme } from "@emotion/react"
 import Image from "next/image"
 import { ParallaxBanner } from "react-scroll-parallax"
 import { theme } from "../theme"
 import { Block } from "../components/Block/Block"
 import { TinaMarkdown } from "tinacms/dist/rich-text"
-import { PageBlocksContacts } from "../tina/__generated__/types"
 import { isDefined } from "../utils/hooks/isDefined"
+import { PageBlocksContacts } from "../tina/__generated__/types"
 
 const Contacts: React.FC<PageBlocksContacts> = ({
   id,
@@ -54,13 +54,13 @@ const Contacts: React.FC<PageBlocksContacts> = ({
         <TinaMarkdown
           content={richText}
           components={{
-            p: ({ children }) => (
+            p: (props?: { children: JSX.Element }) => (
               <p
                 css={css`
                   color: white;
                 `}
               >
-                {children}
+                {props?.children}
               </p>
             ),
           }}
