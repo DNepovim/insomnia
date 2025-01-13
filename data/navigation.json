@@ -1,16 +1,16 @@
 {
   "items": [
     {
-      "title": "Principy",
-      "link": "principy"
-    },
-    {
       "title": "Domů",
       "link": "uvod"
     },
     {
       "title": "Tým",
       "link": "tym"
+    },
+    {
+      "title": "Principy",
+      "link": "principy"
     }
   ]
 }
