@@ -23,7 +23,7 @@ const Contacts: React.FC<PageBlocksContacts> = ({
       layers={[
         {
           image: "/uploads/sky_footer.webp",
-          speed: 0.2,
+          speed: -20,
         },
       ]}
     >
