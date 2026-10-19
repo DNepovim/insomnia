@@ -12,11 +12,13 @@ import { isDefined } from "../utils/hooks/isDefined"
 
 const gap = 16
 
-// Subtle per-column drift so the thumbs read as parallax rather than one
-// block sliding. Kept small: at 3 columns the widest spread is 1.5 -> 3,
-// i.e. at most 30px of travel, well inside the grid gap.
-const columnSpeeds = [3, 1.5, 2.5]
-const thumbSpeed = (i: number): number => columnSpeeds[i % columnSpeeds.length]
+// The frame keeps its place in the grid and clips; only the image drifts
+// inside it. Parallax translates by +/- speed * 10px, so the image has to
+// overhang the frame by at least that much on each edge or the drift exposes
+// a gap. The extra few px absorb sub-pixel rounding at fractional scroll
+// positions, which would otherwise show a sliver at the travel extremes.
+const thumbSpeed = 3
+const overhang = thumbSpeed * 10 + 4
 
 const Gallery: React.FC<PageBlocksGallery> = ({ id, images, button }) => (
   <Block id={id}>
@@ -46,24 +48,32 @@ const Gallery: React.FC<PageBlocksGallery> = ({ id, images, button }) => (
             css={css`
               margin: 0;
               width: 100%;
+              position: relative;
+              overflow: hidden;
+              aspect-ratio: 1 / 0.7;
+              background-color: ${theme.color.brand};
             `}
           >
-            <Parallax speed={thumbSpeed(i)}>
+            <Parallax
+              speed={thumbSpeed}
+              css={css`
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: -${overhang}px;
+                bottom: -${overhang}px;
+              `}
+            >
               <Image
                 src={image}
                 alt={`Fotka ${i}`}
-                width={theme.layout.width / 3}
-                height={(theme.layout.width / 3) * 0.7}
-                css={css`
-                  background-color: ${theme.color.brand};
-                  max-width: 100%;
-                `}
+                fill
+                sizes="(min-width: 700px) 33vw, (min-width: 500px) 50vw, 100vw"
                 style={{
-                  maxWidth: "100%",
-                  height: "auto",
                   objectFit: "cover",
-                  objectPosition: "center"
-                }} />
+                  objectPosition: "center",
+                }}
+              />
             </Parallax>
           </figure>
         ))}
