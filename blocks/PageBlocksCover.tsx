@@ -23,9 +23,8 @@ const Cover: React.FC<PageBlocksCover> = ({
       layers={[
         {
           image: "/uploads/cover.webp",
-          speed: 0.2,
+          speed: -10,
           opacity: [0.5, 0.2],
-          translateY: [0, 10],
           startScroll: 0,
           endScroll: 500,
         },
