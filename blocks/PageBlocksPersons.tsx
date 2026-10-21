@@ -65,15 +65,15 @@ const Persons: React.FC<PageBlocksPersons> = ({
             {person.image && (
               <Image
                 css={css`
-                  width: 5em;
-                  height: 5em;
+                  width: 8em;
+                  height: 8em;
                   border-radius: 50%;
                   margin: 1em auto;
                 `}
                 src={person.image}
                 alt={person.nick}
-                width={170}
-                height={170}
+                width={256}
+                height={256}
                 style={{
                   maxWidth: "100%",
                   height: "auto",

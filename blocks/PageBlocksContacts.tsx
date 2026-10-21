@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { ReactNode } from "react"
-import { css, Interpolation, Theme } from "@emotion/react"
+import { css, Interpolation, keyframes, Theme } from "@emotion/react"
 import Image from "next/image"
 import { ParallaxBanner } from "react-scroll-parallax"
 import { theme } from "../theme"
@@ -34,10 +34,11 @@ const Contacts: React.FC<PageBlocksContacts> = ({
           flex-direction: column;
           justify-content: center;
           text-align: center;
-          max-width: 800px;
+          box-sizing: border-box;
+          max-width: 600px;
           height: 100%;
           margin: 0 auto;
-          padding: 4rem 0;
+          padding: 4rem 16px;
         `}
       >
         <h2
@@ -77,12 +78,37 @@ const Contacts: React.FC<PageBlocksContacts> = ({
               href={getHref(contact.url)}
               rel="noreferrer noopener"
               title={contact.type}
+              css={css`
+                display: block;
+                margin-right: 8px;
+
+                img {
+                  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+                }
+
+                &:hover img,
+                &:focus-visible img {
+                  animation: ${hop} 0.5s ease-out;
+                  transform: scale(1.08);
+                }
+
+                &:active img {
+                  transform: scale(0.97);
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+                  &:hover img,
+                  &:focus-visible img {
+                    animation: none;
+                  }
+                }
+              `}
             >
               <Image
                 css={css`
+                  display: block;
                   width: 3em;
                   height: 3em;
-                  margin-right: 8px !important;
                 `}
                 src={`/icons/${contact.icon}.svg`}
                 alt=""
@@ -100,6 +126,13 @@ const Contacts: React.FC<PageBlocksContacts> = ({
     </ParallaxBanner>
   </Block>
 )
+
+const hop = keyframes`
+  0% { transform: translateY(0) rotate(0) scale(1); }
+  35% { transform: translateY(-4px) rotate(-5deg) scale(1.08); }
+  65% { transform: translateY(0) rotate(3deg) scale(1.08); }
+  100% { transform: translateY(0) rotate(0) scale(1.08); }
+`
 
 const getHref = (url: string): string =>
   url.includes("@") ? `mailto:${url}` : url

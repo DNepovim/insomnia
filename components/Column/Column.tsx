@@ -14,28 +14,30 @@ export const Column: React.FC<PageBlocksColumnsColumns> = ({
   <article>
     <header
       css={css`
+        --title-size: 1.17em;
+        --title-line-height: 1.3;
         display: flex;
-        align-items: flex-end;
+        align-items: center;
+        margin-bottom: 10px;
       `}
     >
       <Image
         css={css`
-          width: 3em;
-          height: 3em;
+          flex-shrink: 0;
+          width: calc(2.4 * var(--title-line-height) * var(--title-size));
+          height: calc(2.4 * var(--title-line-height) * var(--title-size));
           margin-right: 8px !important;
         `}
         src={`/icons/${icon}.svg`}
         alt=""
         width={80}
         height={80}
-        style={{
-          maxWidth: "100%",
-          height: "auto",
-        }}
       />
       <h3
         css={css`
-          margin: 0 0 10px;
+          margin: 0;
+          font-size: var(--title-size);
+          line-height: var(--title-line-height);
         `}
       >
         {tp(title)}

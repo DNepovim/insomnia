@@ -21,7 +21,14 @@ const RichText: React.FC<PageBlocksRichText> = ({
       `}
     >
       {title && <Heading level={2}>{tp(title)}</Heading>}
-      <TinaMarkdown content={richText} />
+      <div
+        css={css`
+          max-width: 70ch;
+          margin: 0 auto;
+        `}
+      >
+        <TinaMarkdown content={richText} />
+      </div>
     </Container>
   </Block>
 )
