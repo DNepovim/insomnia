@@ -238,7 +238,7 @@ const personsBlock: Template = {
       name: "persons",
       list: true,
       ui: {
-        itemProps: (item) => ({ label: item.nickname }),
+        itemProps: (item) => ({ label: item.nick }),
       },
       fields: [
         {
