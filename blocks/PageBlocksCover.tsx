@@ -74,7 +74,7 @@ const Cover: React.FC<PageBlocksCover> = ({
             {claim}
           </p>
         )}
-        {button?.showButton && (
+        {button?.showButton && button.link && (
           <Button link={button.link} targetBlank>
             {button.label}
           </Button>

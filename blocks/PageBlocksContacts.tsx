@@ -72,55 +72,58 @@ const Contacts: React.FC<PageBlocksContacts> = ({
             justify-content: center;
           `}
         >
-          {(contacts ?? []).filter(isDefined).map((contact) => (
-            <a
-              key={contact.type}
-              href={getHref(contact.url)}
-              rel="noreferrer noopener"
-              title={contact.type}
-              css={css`
-                display: block;
-                margin-right: 8px;
-
-                img {
-                  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-                }
-
-                &:hover img,
-                &:focus-visible img {
-                  animation: ${hop} 0.5s ease-out;
-                  transform: scale(1.08);
-                }
-
-                &:active img {
-                  transform: scale(0.97);
-                }
-
-                @media (prefers-reduced-motion: reduce) {
-                  &:hover img,
-                  &:focus-visible img {
-                    animation: none;
-                  }
-                }
-              `}
-            >
-              <Image
+          {(contacts ?? [])
+            .filter(isDefined)
+            .filter((contact) => contact.url && contact.icon)
+            .map((contact) => (
+              <a
+                key={contact.type}
+                href={getHref(contact.url ?? "")}
+                rel="noreferrer noopener"
+                title={contact.type ?? undefined}
                 css={css`
                   display: block;
-                  width: 3em;
-                  height: 3em;
+                  margin-right: 8px;
+
+                  img {
+                    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+                  }
+
+                  &:hover img,
+                  &:focus-visible img {
+                    animation: ${hop} 0.5s ease-out;
+                    transform: scale(1.08);
+                  }
+
+                  &:active img {
+                    transform: scale(0.97);
+                  }
+
+                  @media (prefers-reduced-motion: reduce) {
+                    &:hover img,
+                    &:focus-visible img {
+                      animation: none;
+                    }
+                  }
                 `}
-                src={`/icons/${contact.icon}.svg`}
-                alt=""
-                width={70}
-                height={70}
-                style={{
-                  maxWidth: "100%",
-                  height: "auto",
-                }}
-              />
-            </a>
-          ))}
+              >
+                <Image
+                  css={css`
+                    display: block;
+                    width: 3em;
+                    height: 3em;
+                  `}
+                  src={`/icons/${contact.icon}.svg`}
+                  alt=""
+                  width={70}
+                  height={70}
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto",
+                  }}
+                />
+              </a>
+            ))}
         </div>
       </div>
     </ParallaxBanner>

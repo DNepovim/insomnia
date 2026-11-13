@@ -1,5 +1,13 @@
 import { defineConfig, Template } from "tinacms"
 
+// Validate only in the editor form. Tina's `required: true` makes the GraphQL
+// field non-nullable, so a single empty list item saved from the CMS breaks
+// the whole page query.
+const required = (value: unknown) =>
+  value === undefined || value === null || value === ""
+    ? "Povinné pole"
+    : undefined
+
 const globalBlockFields: Template["fields"] = [
   {
     type: "string",
@@ -39,7 +47,7 @@ const columnsBlock: Template = {
           type: "string",
           label: "Nadpis",
           name: "title",
-          required: true,
+          ui: { validate: required },
         },
         {
           type: "rich-text",
@@ -98,20 +106,20 @@ const contactsBlock: Template = {
           type: "string",
           label: "Typ",
           name: "type",
-          required: true,
+          ui: { validate: required },
         },
         {
           type: "string",
           label: "Ikona",
           name: "icon",
           options: ["mail", "fb", "insta"],
-          required: true,
+          ui: { validate: required },
         },
         {
           type: "string",
           label: "Odkaz",
           name: "url",
-          required: true,
+          ui: { validate: required },
         },
       ],
     },
@@ -155,13 +163,13 @@ const coverBlock: Template = {
           type: "string",
           label: "Popis",
           name: "label",
-          required: true,
+          ui: { validate: required },
         },
         {
           type: "string",
           label: "Odkaz",
           name: "link",
-          required: true,
+          ui: { validate: required },
         },
         {
           type: "boolean",
@@ -201,13 +209,13 @@ const galleryBlock: Template = {
           type: "string",
           label: "Popis",
           name: "label",
-          required: true,
+          ui: { validate: required },
         },
         {
           type: "string",
           label: "Odkaz",
           name: "link",
-          required: true,
+          ui: { validate: required },
         },
       ],
     },
@@ -250,13 +258,13 @@ const personsBlock: Template = {
           type: "string",
           label: "Přezdívka",
           name: "nick",
-          required: true,
+          ui: { validate: required },
         },
         {
           type: "string",
           label: "Jméno",
           name: "name",
-          required: true,
+          ui: { validate: required },
         },
         {
           type: "rich-text",
@@ -333,19 +341,19 @@ const videoBlock: Template = {
       type: "string",
       label: "Kód videa",
       name: "src",
-      required: true,
+      ui: { validate: required },
     },
     {
       type: "number",
       label: "Šířka",
       name: "width",
-      required: true,
+      ui: { validate: required },
     },
     {
       type: "number",
       label: "Výška",
       name: "height",
-      required: true,
+      ui: { validate: required },
     },
   ],
 }
@@ -406,13 +414,13 @@ export const config = defineConfig({
                 name: "title",
                 label: "Název",
                 type: "string",
-                required: true,
+                ui: { validate: required },
               },
               {
                 name: "link",
                 label: "Odkaz",
                 type: "string",
-                required: true,
+                ui: { validate: required },
               },
             ],
           },

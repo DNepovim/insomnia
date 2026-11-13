@@ -78,7 +78,7 @@ const Gallery: React.FC<PageBlocksGallery> = ({ id, images, button }) => (
           </figure>
         ))}
       </div>
-      {button && (
+      {button?.link && (
         <div
           css={css`
             display: inline-block;

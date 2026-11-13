@@ -40,7 +40,7 @@ export const Column: React.FC<PageBlocksColumnsColumns> = ({
           line-height: var(--title-line-height);
         `}
       >
-        {tp(title)}
+        {tp(title ?? "")}
       </h3>
     </header>
     <TinaMarkdown content={richText} />

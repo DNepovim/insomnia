@@ -39,66 +39,69 @@ const Persons: React.FC<PageBlocksPersons> = ({
         justify-content: center;
       `}
     >
-      {(persons ?? []).filter(isDefined).map((person, i) => (
-        <article
-          key={i}
-          css={css`
-            max-width: 900px;
-            margin: 0 0 32px;
-            @media (min-width: 500px) {
-              margin: 0 32px 32px;
-            }
-            @media (min-width: 1000px) {
-              width: 390px;
-            }
-          `}
-        >
-          <figure
+      {(persons ?? [])
+        .filter(isDefined)
+        .filter((person) => person.nick || person.name)
+        .map((person, i) => (
+          <article
+            key={i}
             css={css`
-              margin: 0 1em 0 0;
-              shape-outside: circle(50%);
+              max-width: 900px;
+              margin: 0 0 32px;
               @media (min-width: 500px) {
-                float: left;
+                margin: 0 32px 32px;
+              }
+              @media (min-width: 1000px) {
+                width: 390px;
               }
             `}
           >
-            {person.image && (
-              <Image
-                css={css`
-                  width: 8em;
-                  height: 8em;
-                  border-radius: 50%;
-                  margin: 1em auto;
-                `}
-                src={person.image}
-                alt={person.nick}
-                width={256}
-                height={256}
-                style={{
-                  maxWidth: "100%",
-                  height: "auto",
-                }}
-              />
-            )}
-          </figure>
-          <h3
-            css={css`
-              font-size: 1.8rem;
-              margin: 0;
-            `}
-          >
-            {tp(person.nick)}
-          </h3>
-          <p
-            css={css`
-              margin-top: 0;
-            `}
-          >
-            <strong>{tp(person.name)}</strong>
-          </p>
-          <TinaMarkdown content={person.richText} />
-        </article>
-      ))}
+            <figure
+              css={css`
+                margin: 0 1em 0 0;
+                shape-outside: circle(50%);
+                @media (min-width: 500px) {
+                  float: left;
+                }
+              `}
+            >
+              {person.image && (
+                <Image
+                  css={css`
+                    width: 8em;
+                    height: 8em;
+                    border-radius: 50%;
+                    margin: 1em auto;
+                  `}
+                  src={person.image}
+                  alt={person.nick ?? ""}
+                  width={256}
+                  height={256}
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto",
+                  }}
+                />
+              )}
+            </figure>
+            <h3
+              css={css`
+                font-size: 1.8rem;
+                margin: 0;
+              `}
+            >
+              {tp(person.nick ?? "")}
+            </h3>
+            <p
+              css={css`
+                margin-top: 0;
+              `}
+            >
+              <strong>{tp(person.name ?? "")}</strong>
+            </p>
+            <TinaMarkdown content={person.richText} />
+          </article>
+        ))}
     </div>
   </Block>
 )
